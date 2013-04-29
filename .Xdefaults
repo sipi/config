@@ -1,0 +1,32 @@
+URxvt.urgentOnBell: true
+
+! to match gnome-terminal "Linux console" scheme
+! foreground/background
+URxvt*background: #111111
+URxvt*foreground: #FFFFFF
+
+urxvt*cursorColor: #4E9A06
+urxvt*cursorBlink: false
+
+URxvt*font: xft:Monospace:pixelsize=12 antialias=true
+
+! ScrollBar
+urxvt*scrollBar: true
+urxvt*scrollBar_right: true
+urxvt*scrollColor: #A2A2A2
+urxvt*scrollBar_floating: true
+
+! open url in firfox
+URxvt.perl-ext-common : default,matcher
+URxvt.urlLauncher     : firefox
+URxvt.matcher.button  : 1
+
+! transparencei
+! URxvt*transparent: true
+! URxvt*shading: 10
+
+! Colors
+URxvt*termName: screen-256color
+
+
+Xcursor.theme: Vanilla-DMZ

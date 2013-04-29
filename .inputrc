@@ -1,0 +1,51 @@
+# do not bell on tab-completion
+#set bell-style none
+
+set meta-flag on
+set input-meta on
+set convert-meta off
+set output-meta on
+
+# Enable case-insensative tab completion
+set completion-ignore-case On
+
+"\e[1~":beginning-of-line
+"\e[3~":delete-char
+"\e[4~":end-of-line
+"\e\C-h": backward-kill-word
+"\e\e[3~": kill-word
+
+"\C-e": complete
+
+"\C-c": backward-char
+"\C-r": forward-char
+"\C-s": previous-history
+"\C-t": next-history
+
+"\ec": backward-word
+"\er": forward-word
+
+"\C-l\C-c": beginning-of-line
+"\C-l\C-r": end-of-line
+
+
+"\C-d": delete-char
+"\C-v": backward-delete-char
+
+"\ed": kill-word
+"\ev": backward-kill-word
+
+"\C-l\C-d": kill-line
+"\C-l\C-v": backward-kill-line
+
+"\C-k": kill-whole-line
+"\C-o": overwrite-mode
+"\C-h": forward-search-history
+"\C-f": reverse-search-history
+"\C-g": undo
+
+"\C-x\C-c": clear-screen 
+
+### MACROS ###
+
+"\C-q": "\eb\"\ef\""

@@ -1,0 +1,10 @@
+[user]
+	name = Clément SIPIETER
+	email = clement@6pi.fr
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+[core]
+	editor = emacs -nw
+
