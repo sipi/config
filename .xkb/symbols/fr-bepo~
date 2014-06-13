@@ -1,0 +1,15 @@
+
+partial alphanumeric_keys
+xkb_symbols "bepow" 
+{
+    include "fr(bepo)"
+
+    // Édition des modifieurs
+    key <LSGT> { [ Control_L ] };
+    key <LCTL> { [ Hyper_L ] };
+    modifier_map Control { <LSGT> };
+    modifier_map mod3 { <LCTL> };
+
+    // Déplacement du w
+    key <AB01> { [	w,	W,	backslash	] }; // w W \
+};

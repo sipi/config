@@ -1,0 +1,83 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; key 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;(define-prefix-command 'hyper)
+;;(global-set-key (kbd "<Hyper_L>") 'hyper)
+;;(define-set-key 'hyper (kbd "c") 'backward-char)
+
+(global-unset-key "\C-p") ;; previous-line
+(global-unset-key "\C-n") ;; next-line
+(global-unset-key "\M-b") ;; backward-word
+(global-unset-key "\M-f") ;; forward-word
+(global-unset-key "\C-v") ;; scroll-up
+(global-unset-key "\M-v") ;; scroll-down
+(global-unset-key "\M->") ;; go to the end of buffer
+(global-unset-key "\C-z") ;; ???
+(global-unset-key "\C-c") 
+(global-unset-key "\C-a")
+(global-unset-key "\C-e")
+(global-unset-key "\C-l")
+(global-unset-key "\C-w")
+(global-unset-key (kbd "C-SPC"))
+
+
+
+;; (global-unset-key "\C-w") ;; cut
+;; (global-unset-key "\M-w") ;; copy
+;; (global-unset-key "\C-y") ;; paste 
+;; (global-unset-key "\M-y") ;; swap buffer selection
+
+;; Déplacement
+(define-key global-map (kbd "C-c") 'backward-char)
+(define-key global-map (kbd "C-t") 'next-line)
+(define-key global-map (kbd "C-s") 'previous-line)
+(define-key global-map (kbd "C-r") 'forward-char)
+
+(define-key global-map "\C-w\C-c" 'backward-word)
+(define-key global-map "\C-w\C-r" 'forward-word)
+
+(define-key global-map (kbd "C-l C-c") 'end-of-line)
+(define-key global-map (kbd "C-l C-r") 'beginning-of-line)
+
+(define-key global-map (kbd "C-g") 'goto-line)
+
+;; Édition
+(define-key global-map (kbd "C-d") 'delete-char)
+(define-key global-map (kbd "C-v") 'backward-delete-char)
+
+(define-key global-map (kbd "C-w C-d") 'kill-word)
+(define-key global-map (kbd "C-w C-v") 'backward-kill-word)
+
+(define-key global-map (kbd "C-l C-d") 'kill-line)
+(define-key global-map (kbd "C-l C-v") 'backward-kill-line)
+
+(define-key global-map (kbd "C-e") 'dabbrev-expand)
+(define-key global-map (kbd "C-SPC") 'set-mark-command) 
+(define-key global-map (kbd "C-z") 'undo)
+ 
+;;command
+(define-key global-map (kbd "C-x C-c") 'compile)
+(define-key global-map (kbd "C-x C-s") 'save-buffer)
+(define-key global-map (kbd "C-x C-o") 'other-window)
+(define-key global-map (kbd "C-x C-f") 'find-file)
+(define-key global-map (kbd "C-x C-y") 'yank)
+(define-key global-map (kbd "C-x C-w") 'kill-region)
+
+(global-set-key "\M-^" 'shell-command)
+(global-set-key "\C-x \C-g" 'goto-line)
+
+
+;(global-set-key "\C-<SPC>" 'hippie-expand)
+;(global-set-key "\M-<SPC>" 'set-mark-command)
+
+;; Misc
+(global-set-key (kbd "M-t") 'scroll-up)
+(global-set-key (kbd "M-s") 'scroll-down)
+
+(global-set-key (kbd "M-«") 'beginning-of-buffer)
+(global-set-key (kbd "M-»") 'end-of-buffer)
+
+
+(define-key global-map (kbd "C-x c") 'previous-buffer)
+(define-key global-map (kbd "C-x r") 'next-buffer)
