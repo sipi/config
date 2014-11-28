@@ -16,10 +16,10 @@
 (global-unset-key "\C-w")
 (global-unset-key (kbd "C-SPC"))
 
-(setq mode-specific-map-prefix "\C-y")
+(set 'mode-specific-map-prefix "\C-p")
 ;(setq mode-specific-map (symbol-function 'mode-specific-command-prefix))
 ;(define-key global-map "\C-y" 'mode-specific-command-prefix)
-;(define-key mode-specific-map "\C-c" 'backward-char)
+(define-key global-map (concat mode-specific-map-prefix "\C-c") 'backward-char)
 ;(setq outline-minor-mode-prefix "\C-o")
 
 
@@ -30,16 +30,37 @@
 ;; (global-unset-key "\M-y") ;; swap buffer selection
 
 ;; Déplacement
-(define-key global-map "\C-c" 'backward-char)
-(define-key global-map "\C-t" 'next-line)
-(define-key global-map "\C-s" 'previous-line)
+(defun next-line-recenter ()
+  "next-line follow with a recenter call"
+  (interactive)
+  (next-line)
+  (recenter)
+)
+(defun previous-line-recenter ()
+  "previous-line follow with a recenter call"
+  (interactive)
+  (previous-line)
+  (recenter)
+)
+
+
+(define-key global-map "\C-t" 'next-line-recenter)
+(define-key global-map "\C-s" 'previous-line-recenter)
+
 (define-key global-map "\C-r" 'forward-char)
+(define-key global-map "\C-c" 'backward-char)
 
 (define-key global-map "\M-c" 'backward-word)
 (define-key global-map "\M-r" 'forward-word)
 
 (define-key global-map (kbd "C-l C-c") 'beginning-of-line)
 (define-key global-map (kbd "C-l C-r") 'end-of-line)
+
+(global-set-key (kbd "M-t") 'forward-paragraph)
+(global-set-key (kbd "M-s") 'backward-paragraph)
+
+(define-key global-map [?\M-«] 'beginning-of-buffer)
+(define-key global-map [?\M-»] 'end-of-buffer)
 
 (define-key global-map (kbd "C-l C-g") 'goto-line)
 
@@ -76,18 +97,13 @@
 (define-key isearch-mode-map "\C-t" 'isearch-repeat-forward)
 (define-key isearch-mode-map "\C-s" 'isearch-repeat-backward)
 
-;; Misc
-(global-set-key (kbd "M-t") 'scroll-up)
-(global-set-key (kbd "M-s") 'scroll-down)
-
-
 (define-key global-map (kbd "C-x c") 'previous-buffer)
 (define-key global-map (kbd "C-x r") 'next-buffer)
 
 ;;(use-local-map (make-sparse-keymap))
 ;;(local-unset-k
 
-(define-key global-map "\C-y" 'mode-specific-command-prefix)
+;(define-key global-map "\C-y" 'mode-specific-command-prefix)
 
 
         

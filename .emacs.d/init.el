@@ -1,5 +1,6 @@
-(load-file "~/.emacs.d/keys.el")
+
 (load-file "~/.emacs.d/config.el")
+(load-file "~/.emacs.d/keys.el")
 
 ;(custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -25,3 +26,13 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; 
+
+(defun kill-frame ()
+  "see delete-frame"
+  (interactive)
+  (delete-frame)
+)
