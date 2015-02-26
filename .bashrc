@@ -3,8 +3,10 @@
 # for examples
 
 # If not running interactively, don't do anything
-[[ $- != *i* ]] && return
-
+case $- in
+    *i*) ;;
+      *) return;;
+esac
 
 stty intr ^X
 stty stop undef
@@ -45,8 +47,12 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-PS1="\n┌[\[\e[36m\]\u@\h \w\[\e[0m\]]\n└─╼ "
-
+if [ "$USER" == "root" ]; 
+then
+    PS1="\n┌[\[\e[31m\]\u@\h \w\[\e[0m\]]\n└─╼ "
+else
+    PS1="\n┌[\[\e[36m\]\u@\h \w\[\e[0m\]]\n└─╼ "
+fi
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -67,4 +73,3 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-

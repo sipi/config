@@ -1,3 +1,7 @@
+
+(set 'mode-specific-map-prefix "\C-b")
+(define-key key-translation-map "\C-b" "\C-c")
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; key 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -16,48 +20,53 @@
 (global-unset-key "\C-w")
 (global-unset-key (kbd "C-SPC"))
 
-(set 'mode-specific-map-prefix "\C-p")
-;(setq mode-specific-map (symbol-function 'mode-specific-command-prefix))
-;(define-key global-map "\C-y" 'mode-specific-command-prefix)
-(define-key global-map (concat mode-specific-map-prefix "\C-c") 'backward-char)
-;(setq outline-minor-mode-prefix "\C-o")
 
+(define-key key-translation-map "\C-c" [left])
+(define-key key-translation-map "\C-t" [down])
+(define-key key-translation-map "\C-s" [up])
+(define-key key-translation-map "\C-r" [right])
 
-
-;; (global-unset-key "\C-w") ;; cut
-;; (global-unset-key "\M-w") ;; copy
-;; (global-unset-key "\C-y") ;; paste 
-;; (global-unset-key "\M-y") ;; swap buffer selection
 
 ;; Déplacement
 (defun next-line-recenter ()
-  "next-line follow with a recenter call"
+  "next-line follow by a recenter call"
   (interactive)
   (next-line)
   (recenter)
 )
 (defun previous-line-recenter ()
-  "previous-line follow with a recenter call"
+  "previous-line follow by a recenter call"
   (interactive)
   (previous-line)
   (recenter)
 )
+(defun forward-paragraph-recenter ()
+  "forward-paragraph follow by a recenter call"
+  (interactive)
+  (forward-paragraph)
+  (recenter)
+)
+(defun backward-paragraph-recenter ()
+  "backward-paragraph follow by a recenter call"
+  (interactive)
+  (backward-paragraph)
+  (recenter)
+)
 
+(define-key global-map [down] 'next-line-recenter)
+(define-key global-map [up] 'previous-line-recenter)
 
-(define-key global-map "\C-t" 'next-line-recenter)
-(define-key global-map "\C-s" 'previous-line-recenter)
-
-(define-key global-map "\C-r" 'forward-char)
-(define-key global-map "\C-c" 'backward-char)
+;(define-key global-map "\C-r" 'forward-char)
+;(define-key global-map "\C-c" 'backward-char)
 
 (define-key global-map "\M-c" 'backward-word)
 (define-key global-map "\M-r" 'forward-word)
 
-(define-key global-map (kbd "C-l C-c") 'beginning-of-line)
-(define-key global-map (kbd "C-l C-r") 'end-of-line)
+(define-key global-map (kbd "C-l <left>") 'beginning-of-line)
+(define-key global-map (kbd "C-l <right>") 'end-of-line)
 
-(global-set-key (kbd "M-t") 'forward-paragraph)
-(global-set-key (kbd "M-s") 'backward-paragraph)
+(global-set-key (kbd "M-t") 'forward-paragraph-recenter)
+(global-set-key (kbd "M-s") 'backward-paragraph-recenter)
 
 (define-key global-map [?\M-«] 'beginning-of-buffer)
 (define-key global-map [?\M-»] 'end-of-buffer)
@@ -85,25 +94,43 @@
  
 ;;command
 (define-key global-map (kbd "C-x C-c") 'compile)
-(define-key global-map (kbd "C-x C-s") 'save-buffer)
+(define-key global-map (kbd "C-x <up>") 'save-buffer)
 (define-key global-map (kbd "C-x C-o") 'other-window)
 (define-key global-map (kbd "C-x C-f") 'find-file)
 (define-key global-map (kbd "C-x C-y") 'yank)
 (define-key global-map (kbd "C-x C-d") 'kill-region)
 (define-key global-map (kbd "C-x C-q") 'kill-emacs)
+
 (define-key global-map "\M-^" 'shell-command)
+(define-key global-map "\M-'" 'execute-extended-command)
 
 (define-key global-map "\C-f" 'isearch-forward)
 (define-key isearch-mode-map "\C-t" 'isearch-repeat-forward)
 (define-key isearch-mode-map "\C-s" 'isearch-repeat-backward)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Buffers
+
+(define-key global-map "\M-b" 'list-buffers)
 (define-key global-map (kbd "C-x c") 'previous-buffer)
 (define-key global-map (kbd "C-x r") 'next-buffer)
 
-;;(use-local-map (make-sparse-keymap))
-;;(local-unset-k
 
-;(define-key global-map "\C-y" 'mode-specific-command-prefix)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; VIEW MODE                                 
+
+(define-key global-map "\M-p" 'view-mode)
+
+
+(view-mode) ;; init the view-mode-map
+
+(define-key view-mode-map "c" 'backward-char)
+(define-key view-mode-map "t" 'next-line-recenter)
+(define-key view-mode-map "s" 'previous-line-recenter)
+(define-key view-mode-map "r" 'forward-char)
+      
+(define-key view-mode-map "k" 'kill-buffer)
+
 
 
         

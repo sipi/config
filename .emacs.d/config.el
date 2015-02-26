@@ -24,6 +24,11 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Behavior
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(setq pop-up-windows nil)
 ;;(require 'ecb)
 ;;(ecb-minor-mode)
 ;;(ecb-change-layout "my-layout")
@@ -83,7 +88,6 @@
 (add-hook 'php-mode-hook        'dev-mode)
 (add-hook 'sh-mode-hook         'dev-mode)
 (add-hook 'Latex-mode-hook      'dev-mode)
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Misc 
